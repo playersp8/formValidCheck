@@ -1,7 +1,7 @@
 {
   "name": "task1",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "http://playersp8.github.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
