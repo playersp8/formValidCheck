@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/formValidCheck/static/css/main.724f9a7c.css",
-    "main.js": "/formValidCheck/static/js/main.a24da138.js",
-    "static/js/787.b755f208.chunk.js": "/formValidCheck/static/js/787.b755f208.chunk.js",
-    "static/media/logo.svg": "/formValidCheck/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/formValidCheck/index.html",
-    "main.724f9a7c.css.map": "/formValidCheck/static/css/main.724f9a7c.css.map",
-    "main.a24da138.js.map": "/formValidCheck/static/js/main.a24da138.js.map",
-    "787.b755f208.chunk.js.map": "/formValidCheck/static/js/787.b755f208.chunk.js.map"
+    "main.css": "/formValidCheck/2/static/css/main.724f9a7c.css",
+    "main.js": "/formValidCheck/2/static/js/main.b1590253.js",
+    "static/js/787.b755f208.chunk.js": "/formValidCheck/2/static/js/787.b755f208.chunk.js",
+    "static/media/logo.svg": "/formValidCheck/2/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/formValidCheck/2/index.html",
+    "main.724f9a7c.css.map": "/formValidCheck/2/static/css/main.724f9a7c.css.map",
+    "main.b1590253.js.map": "/formValidCheck/2/static/js/main.b1590253.js.map",
+    "787.b755f208.chunk.js.map": "/formValidCheck/2/static/js/787.b755f208.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.724f9a7c.css",
-    "static/js/main.a24da138.js"
+    "static/js/main.b1590253.js"
   ]
 }
