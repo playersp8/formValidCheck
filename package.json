@@ -1,8 +1,8 @@
 {
   "name": "task1",
   "version": "0.1.0",
-  "private": false,
-  "homepage": "http://playersp8.github.io/",
+  "private": true,
+  "homepage": "http://playersp8.github.io/formValidCheck/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

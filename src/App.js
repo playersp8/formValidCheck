@@ -5,11 +5,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InputArea from "./Components/OldPage";
 function App() {
   return (
-    <BrowserRouter basename={window.location.pathname || ""}>
-      <Routes>
-        <Route path="/2" element={<InputArea />} />
-      </Routes>
-    </BrowserRouter>
+    // <BrowserRouter basename={window.location.pathname || ""}>
+    //   <Routes>
+    //     <Route path="/2" element={} />
+    //   </Routes>
+    // </BrowserRouter>
+    <InputArea />
   );
 }
 
