@@ -1,0 +1,54 @@
+{
+  "task1": [
+    {
+      "id": 122,
+      "name": "Somo",
+      "email": "eanne@graham.com",
+      "state": "Delhi",
+      "city": "Dwarka"
+    },
+    {
+      "id": 123,
+      "name": "Shrey",
+      "email": "shrey@gmail.com",
+      "state": "Delhi",
+      "city": "Dwarka"
+    },
+    {
+      "name": "shrey",
+      "email": "shrey.pathak@globallogic.com",
+      "id": 124
+    },
+    {
+      "name": "sdss",
+      "email": "shrey.pathak@globallogic.com",
+      "id": 125
+    },
+    {
+      "name": "Pathak",
+      "email": "PathakW@gmail.com",
+      "id": 127
+    },
+    {
+      "name": "H R Pathak",
+      "email": "PathakW@gmail.com",
+      "state": " ",
+      "city": " ",
+      "id": 128
+    },
+    {
+      "name": "soumo",
+      "email": "soumo@gmail.com",
+      "state": "Delhi",
+      "city": " Ghitorni",
+      "id": 129
+    },
+    {
+      "name": "Tanishka",
+      "email": "tanishka@gmail.com",
+      "state": "Delhi",
+      "city": "Dwarka",
+      "id": 130
+    }
+  ]
+}

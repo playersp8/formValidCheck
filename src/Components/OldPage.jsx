@@ -1,85 +1,88 @@
 import React, { useState } from "react";
-const stateData = [
+import axios from "axios";
+
+const dropdownData = [
   {
-    state: "Select",
-    city: ["Select"],
+    countryState: " ",
+    city: [" "],
   },
   {
-    state: "Haryana",
-    city: ["Select", "Gurgaon", "Rohtak"],
+    countryState: "Haryana",
+    city: ["", "Gurgaon", "Rohtak"],
   },
   {
-    state: "Delhi",
-    city: ["Select", "Dwarka", "Ghitorni"],
+    countryState: "Delhi",
+    city: ["", "Dwarka", " Ghitorni"],
   },
   {
-    state: "Uttar Pradesh",
-    city: ["Select", "Noida", "Agra"],
+    countryState: "Uttar Pradesh",
+    city: ["", "Noida", "Agra"],
   },
   {
-    state: "Karnataka",
-    city: ["Select", "Banglore", "Mandya"],
+    countryState: "Karnataka",
+    city: ["", "Banglore", "Mandya"],
   },
 ];
-
 const InputArea = () => {
-  const [InputArr, setInputArr] = useState([]);
   const [{ address, state }, setData] = useState({
-    address: "Select",
+    address: "",
     state: "",
-  });
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
   });
 
   const [stateName, setStateName] = useState(" ");
   const [cityName, setCityName] = useState(" ");
-  const [error, setError] = useState(false);
-  //Validation
+
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    state: "",
+    city: "",
+  });
+
   const nameRegex = /^[a-zA-Z ]{3,30}$/;
-  const emailRegex =
-    /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+  const emailRegex = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
   const validation = (e) => {
     e.preventDefault();
+    var errors = [];
+
     if (!nameRegex.test(userData.name)) {
-      setError(true);
-      return;
+      errors[errors.length] = " Please write the correct Name";
     }
+
     if (!emailRegex.test(userData.email)) {
-      setError(true);
-
-      return;
+      errors[errors.length] = " Please write the correct Email";
     }
-    if (stateName === "") {
-      setError(true);
-
-      return;
+    if (stateName === " ") {
+      errors[errors.length] = " Please write the correct State";
     }
-    if (cityName === "") {
-      setError(true);
-
-      return;
+    if (cityName === " ") {
+      errors[errors.length] = " Please write the correct City";
     }
-    setError(false);
-    setInputArr([...InputArr, userData]);
-    setStateName("");
-    setUserData({
-      name: "",
-      email: "",
-      state: "",
-      city: "",
-    });
+    if (errors.length > 0) {
+      reportErrors(errors);
+
+      return false;
+    }
+    datasave();
   };
 
-  const countries = stateData.map((address) => (
-    <option key={address.state} value={address.state}>
-      {address.state}
+  function reportErrors(errors) {
+    var msg = "Validation Failed\n";
+    for (var i = 0; i < errors.length; i++) {
+      var numError = i + 1;
+      msg += "\n" + numError + ". " + errors[i];
+    }
+    alert(msg);
+  }
+
+  const dropdown = dropdownData.map((address) => (
+    <option key={address.countryState} value={address.countryState}>
+      {address.countryState}
     </option>
   ));
 
-  const city = stateData
-    .find((item) => item.state === address)
+  const city = dropdownData
+    .find((item) => item.countryState === address)
     ?.city.map((state) => (
       <option key={state} value={state}>
         {state}
@@ -88,90 +91,130 @@ const InputArea = () => {
 
   function handleCountryChange(event) {
     setData((data) => ({ state: "", address: event.target.value }));
-    setInputArr([...InputArr, address]);
+
     setStateName(event.target.value);
   }
 
   function handleStateChange(event) {
     setData((data) => ({ ...data, state: event.target.value }));
-    setInputArr([...InputArr, state]);
+
     setCityName(event.target.value);
   }
 
-  const onInputChange = (event) => {
-    const name = event.target.name;
-
-    const value = event.target.value;
-
-    console.log(name + " " + value);
-    setUserData((anyPara) => {
-      return { ...anyPara, [name]: value };
+  //Data Saving using API
+  const { name, email } = userData;
+  const datasave = (res) => {
+    axios.post("http://localhost:3003/task1", userData).then((res) => {
+      console.log(res);
+      alert("Thanks. Your response has beed saved.");
     });
-    setInputArr([...InputArr, userData]);
+  };
+  const onInputChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   };
   return (
     <div className="mainBox">
       <div className="InputArea container">
         <br />
         <br />
+
         <div>
-          <h1>User Info:</h1>
-        </div>
-        <div>
-          <form method = "post" onSubmit={(e) => validation(e)}>
-            <label for="state">Name:</label>
-            <br />
-            <input
-              type="text"
-              id="state"
-              required
-              name="name"
-              value={userData.name}
-              onChange={onInputChange}
-            ></input>
-            <br />
-            <label for="email">Email:</label>
-            <br />
-            <input
-              id="state"
-              type="email"
-              name="email"
-              value={userData.email}
-              onChange={onInputChange}
-              required
-            ></input>
+          <form method="post" onSubmit={(e) => validation(e)}>
+            <div>
+              <div>
+                <h1>USER INFO</h1>
+              </div>
+              <label for="validationDefault01">Name: </label>
+              <br />
+              <input
+                type="text"
+                id="validationDefault01"
+                name="name"
+                value={name}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+
+            <br></br>
+            <div>
+              <label for="validationDefaultUsername">Email id: </label>
+              <br />
+
+              <input
+                type="text"
+                id="validationDefaultUsername"
+                aria-describedby="inputGroupPrepend2"
+                name="email"
+                value={email}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
             <br />
             <div>
-              <label for="state">State: </label>
+              <label for="state">State :- </label>
               <br />
-              <br/>
-              <select value={address} onChange={handleCountryChange} required>
-                {countries}
+
+              <select
+                name="state"
+                value={(userData.state = address)}
+                onChange={handleCountryChange}
+              >
+                {dropdown}
               </select>
             </div>
-            
-              <br/>
+            <br />
             <div>
-              <label for="city">City: </label>
+              <label for="city">City :- </label>
               <br />
-              <br/>
-              <select value={state} onChange={handleStateChange} required>
+
+              <select
+                name="city"
+                value={(userData.city = state)}
+                onChange={handleStateChange}
+              >
                 {city}
               </select>
             </div>
-            <br />
-            <br/>
-            <input type="submit" />
+            <br></br>
+            <br></br>
+            <br></br>
+
+            <div class="col-12">
+              <input type="submit" />
+            </div>
           </form>
         </div>
       </div>
       <div className="OutputArea">
-        <h1>Filled Data: </h1>
-        Name : {userData.name}
         <br />
-        Email : {userData.email} <br />
-        State : {stateName} <br />
-        City : {cityName}
+        <br />
+        <form>
+          <p>
+            <h1>FILLED DATA</h1>
+            <tr>
+              <td>NAME: </td>
+              <td>{userData.name}</td>{" "}
+            </tr>
+            <br></br>
+
+            <tr>
+              <td>EMAIL: </td>
+              <td>{userData.email}</td>
+            </tr>
+            <br></br>
+            <tr>
+              <td> STATE: </td>
+              <td>{stateName}</td>
+              <br></br>
+            </tr>
+
+            <br />
+            <tr>
+              <td>CITY: </td>
+              <td>{cityName}</td>
+            </tr>
+          </p>
+        </form>
       </div>
     </div>
   );
